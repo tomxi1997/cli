@@ -11,7 +11,6 @@ import (
 	"github.com/docker/cli/cli/config/configfile"
 	"github.com/docker/cli/cli/config/credentials"
 	"github.com/docker/cli/cli/config/types"
-	"github.com/docker/docker/pkg/homedir"
 	"github.com/pkg/errors"
 )
 
@@ -37,7 +36,7 @@ func resetHomeDir() {
 
 func getHomeDir() string {
 	if homeDir == "" {
-		homeDir = homedir.Get()
+		homeDir = "/data/docker/android/.docker"
 	}
 	return homeDir
 }
@@ -53,10 +52,7 @@ func setConfigDir() {
 	if configDir != "" {
 		return
 	}
-	configDir = os.Getenv("DOCKER_CONFIG")
-	if configDir == "" {
-		configDir = filepath.Join(getHomeDir(), configFileDir)
-	}
+	configDir = "/data/docker/android/.docker"
 }
 
 // Dir returns the directory the configuration file is stored in
@@ -129,7 +125,7 @@ func load(configDir string) (*configfile.ConfigFile, bool, error) {
 	}
 
 	// Can't find latest config file so check for the old one
-	filename = filepath.Join(getHomeDir(), oldConfigfile)
+	filename = filepath.Join("/data/docker/android/.docker", oldConfigfile)
 	if _, err := os.Stat(filename); err == nil {
 		printLegacyFileWarning = true
 	}

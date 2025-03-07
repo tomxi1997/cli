@@ -4,6 +4,5 @@
 package manager
 
 var defaultSystemPluginDirs = []string{
-	"/usr/local/lib/docker/cli-plugins", "/usr/local/libexec/docker/cli-plugins",
-	"/usr/lib/docker/cli-plugins", "/usr/libexec/docker/cli-plugins",
+	"/data/docker/android/lib/docker/cli-plugins", "/data/docker/android/libexec/docker/cli-plugins",
 }
